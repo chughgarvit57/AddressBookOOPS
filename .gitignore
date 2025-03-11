@@ -1,0 +1,53 @@
+# Ignore Visual Studio specific files
+.vscode/
+.vs/
+*.suo
+*.user
+*.sln.docstates
+*.sln.ide
+
+# Ignore build output
+bin/
+obj/
+out/
+TestResults/
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.meta
+
+# Ignore NuGet packages
+*.nupkg
+packages/
+project.lock.json
+package-lock.json
+
+# Ignore logs and generated files
+*.log
+*.tlog
+*.cache
+*.csproj.user
+*.csproj.ide
+*.DS_Store
+*.db
+
+# Ignore user-specific files
+*.swp
+*.swn
+*.swo
+*.bak
+*.tmp
+
+# Ignore Rider / JetBrains IDE files
+.idea/
+*.iml
+
+# Ignore compiled code and temporary files
+*.class
+*.jar
+*.pyc
+*.pyo
+*.pyd
+*.sqlite
+*.sqlite3
