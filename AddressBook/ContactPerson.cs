@@ -22,5 +22,14 @@
             Zip = zip;
             PhoneNumber = phoneNumber;
         }
+
+        public override string ToString()
+        {
+            return $@"
+Name    : {FirstName} {LastName}
+Email   : {Email}
+Address : {Address}, {City}, {State} - {Zip}
+Phone   : {PhoneNumber}";
+        }
     }
 }
