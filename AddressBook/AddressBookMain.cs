@@ -1,6 +1,6 @@
 ﻿namespace AddressBook
 {
-    internal class AddressBook
+    internal class AddressBookMain
     {
         static void Main(string[] args)
         {
