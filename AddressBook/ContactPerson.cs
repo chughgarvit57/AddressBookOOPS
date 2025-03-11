@@ -29,7 +29,8 @@
 Name    : {FirstName} {LastName}
 Email   : {Email}
 Address : {Address}, {City}, {State} - {Zip}
-Phone   : {PhoneNumber}";
+Phone   : {PhoneNumber}
+--------------------------------";
         }
     }
 }
