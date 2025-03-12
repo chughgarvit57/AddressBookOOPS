@@ -15,8 +15,9 @@ namespace AddressBook
                 Console.WriteLine("\n----------- Address Book Menu ----------------");
                 Console.WriteLine("1. Create Contact");
                 Console.WriteLine("2. Add Contact");
-                Console.WriteLine("3. Display Contacts");
-                Console.WriteLine("4. Exit\n");
+                Console.WriteLine("3. Update Contact");
+                Console.WriteLine("4. Display Contacts");
+                Console.WriteLine("5. Exit\n");
                 Console.Write("Enter your choice: ");
                 int choice;
                 if(!int.TryParse(Console.ReadLine(), out choice))
@@ -34,10 +35,15 @@ namespace AddressBook
                         addressBook.AddContact(person);
                         break;
                     case 3:
-                        addressBook.Display();
+                        Console.Write("Enter the first name of the contact to edit: ");
+                        string newFirstName = Console.ReadLine();
+                        addressBook.UpdateContact(newFirstName);
                         break;
                     case 4:
-                        Console.WriteLine("Exiting...!");
+                        addressBook.Display();
+                        break;
+                    case 5:
+                        Console.WriteLine("Exiting Menu...");
                         break;
                     default:
                         Console.WriteLine("\u274c Invalid Option! Please select a valid choice...");
