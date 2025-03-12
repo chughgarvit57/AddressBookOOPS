@@ -32,5 +32,14 @@ Address : {Address}, {City}, {State} - {Zip}
 Phone   : {PhoneNumber}
 --------------------------------";
         }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is ContactPerson other)
+            {
+                return FirstName.Equals(other.FirstName, StringComparison.OrdinalIgnoreCase) && LastName.Equals(other.LastName, StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
+        }
     }
 }

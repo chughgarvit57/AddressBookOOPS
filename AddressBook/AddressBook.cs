@@ -12,6 +12,11 @@
 
         public void AddContact(ContactPerson person)
         {
+            if (contacts.Contains(person))
+            {
+                Console.WriteLine("\u274c Duplicate Contact Found! Contact Not Added.");
+                return;
+            }
             contacts.Add(person);
             Console.WriteLine("\u2705 Contact Added Successfully...!"); 
         }
