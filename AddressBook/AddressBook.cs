@@ -13,7 +13,7 @@
         public void AddContact(ContactPerson person)
         {
             contacts.Add(person);
-            Console.WriteLine("\u2705 Contact Added Successfully...!");
+            Console.WriteLine("\u2705 Contact Added Successfully...!"); 
         }
 
         public void UpdateContact(string firstName)

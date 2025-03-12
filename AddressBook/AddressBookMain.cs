@@ -14,7 +14,7 @@ namespace AddressBook
             {
                 Console.WriteLine("\n----------- Address Book Menu ----------------");
                 Console.WriteLine("1. Create Contact");
-                Console.WriteLine("2. Add Contact");
+                Console.WriteLine("2. Add Contacts");
                 Console.WriteLine("3. Update Contact");
                 Console.WriteLine("4. Delete Contact");
                 Console.WriteLine("5. Display Contacts");
