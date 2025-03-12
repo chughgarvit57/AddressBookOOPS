@@ -8,18 +8,70 @@ namespace AddressBook
         {
             // Enabled unicode characters in terminal
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            IAddressBook addressBook = new AddressBook();
+            Dictionary<string, IAddressBook> addressBooks = new Dictionary<string, IAddressBook>();
             Console.WriteLine("Hi! Welcome To Address Book System..!");
             while (true)
             {
-                Console.WriteLine("\n----------- Address Book Menu ----------------");
+                Console.WriteLine("\n--------------- Address Book System Menu ---------------");
+                Console.WriteLine("1. Create new Address Book");
+                Console.WriteLine("2. Select Address Book");
+                Console.WriteLine("3. Exit.");
+                Console.Write("Enter your choice: ");
+                int mainChoice;
+                if (!int.TryParse(Console.ReadLine(), out mainChoice))
+                {
+                    Console.WriteLine("Invalid Input! Please enter a valid number.");
+                    continue;
+                }
+                switch (mainChoice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter Address Book Name: ");
+                        string bookName = Console.ReadLine();
+                        if (addressBooks.ContainsKey(bookName))
+                        {
+                            Console.WriteLine("Address book with name '{0}' already exists!", bookName);
+                        }
+                        else
+                        {
+                            addressBooks[bookName] = new AddressBook();
+                            Console.WriteLine("Address Book '{0}' created successfully..!", bookName);
+                        }
+                        break;
+                    case 2:
+                        Console.Write("Enter Address Book Name: ");
+                        string selectedBookName = Console.ReadLine();
+                        if (addressBooks.TryGetValue(selectedBookName, out IAddressBook selectedAddressBook))
+                        {
+                            ManageAddressBook(selectedAddressBook);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\u274c Address Book '{0}' Not Found!", selectedBookName);
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Exiting Address Book System... GoodBye!");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid Option! Please select a valid choice...");
+                        break;
+                }
+            }
+        }
+
+        static void ManageAddressBook(IAddressBook addressBook)
+        {
+            while (true)
+            {
+                Console.WriteLine("\n--------------- Address Book Menu ---------------");
                 Console.WriteLine("1. Create Contact");
                 Console.WriteLine("2. Add Contacts");
                 Console.WriteLine("3. Update Contact");
                 Console.WriteLine("4. Delete Contact");
                 Console.WriteLine("5. Display Contacts");
-                Console.WriteLine("6. Exit\n");
-                Console.Write("Enter your choice: ");
+                Console.WriteLine("6. Back To Main Menu");
+                Console.Write("Enter you choice: ");
                 int choice;
                 if(!int.TryParse(Console.ReadLine(), out choice))
                 {
@@ -29,14 +81,14 @@ namespace AddressBook
                 switch (choice)
                 {
                     case 1:
-                        addressBook.CreateContact();
+                        addressBook.CreateContact(); 
                         break;
                     case 2:
                         ContactPerson person = UserInputDetails.TakeDetailsFromUserInput();
                         addressBook.AddContact(person);
                         break;
                     case 3:
-                        Console.Write("Enter the first name of the contact to edit: ");
+                        Console.WriteLine("Enter the first name of the contact to update: ");
                         string newFirstName = Console.ReadLine();
                         addressBook.UpdateContact(newFirstName);
                         break;
@@ -49,18 +101,10 @@ namespace AddressBook
                         addressBook.Display();
                         break;
                     case 6:
-                        Console.WriteLine("Exiting...");
-                        break;
+                        return;
                     default:
-                        Console.WriteLine("\u274c Invalid Option! Please select a valid choice...");
+                        Console.WriteLine("Invalid Option! Please select a valid choice...");
                         break;
-                }
-                Console.WriteLine("Do you wish to continue? (y/n)");
-                string confirmation = Console.ReadLine();
-                if(confirmation == "n" || confirmation == "no")
-                {
-                    Console.WriteLine("Exiting Address Book...GoodBye!");
-                    break;
                 }
             }
         }
