@@ -16,8 +16,9 @@ namespace AddressBook
                 Console.WriteLine("1. Create Contact");
                 Console.WriteLine("2. Add Contact");
                 Console.WriteLine("3. Update Contact");
-                Console.WriteLine("4. Display Contacts");
-                Console.WriteLine("5. Exit\n");
+                Console.WriteLine("4. Delete Contact");
+                Console.WriteLine("5. Display Contacts");
+                Console.WriteLine("6. Exit\n");
                 Console.Write("Enter your choice: ");
                 int choice;
                 if(!int.TryParse(Console.ReadLine(), out choice))
@@ -40,10 +41,15 @@ namespace AddressBook
                         addressBook.UpdateContact(newFirstName);
                         break;
                     case 4:
-                        addressBook.Display();
+                        Console.Write("Enter first name of the contact to delete: ");
+                        string nameToDelete = Console.ReadLine();
+                        addressBook.DeleteContact(nameToDelete);
                         break;
                     case 5:
-                        Console.WriteLine("Exiting Menu...");
+                        addressBook.Display();
+                        break;
+                    case 6:
+                        Console.WriteLine("Exiting...");
                         break;
                     default:
                         Console.WriteLine("\u274c Invalid Option! Please select a valid choice...");

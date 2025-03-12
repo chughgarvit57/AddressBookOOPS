@@ -87,6 +87,18 @@
             }
         }
 
+        public void DeleteContact(string firstName)
+        {
+            ContactPerson contact = contacts.Find(p => p.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase));
+            if(contact == null)
+            {
+                Console.WriteLine("\u274c Contact Not Found");
+                return;
+            }
+            contacts.Remove(contact);
+            Console.WriteLine("\u2705 Contact Deleted Successfully...!");
+        }
+
 
         public void Display()
         {
