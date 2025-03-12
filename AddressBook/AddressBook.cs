@@ -55,7 +55,7 @@
                         break;
                     case "3":
                         Console.Write("Enter New Email: ");
-                        contact.Email = Console.ReadLine();
+                        contact.Email = UserInputDetails.ValidateEmail();
                         break;
                     case "4":
                         Console.Write("Enter New Address: ");
@@ -71,17 +71,11 @@
                         break;
                     case "7":
                         Console.Write("Enter New Zip Code: ");
-                        if (int.TryParse(Console.ReadLine(), out int newZip))
-                            contact.Zip = newZip;
-                        else
-                            Console.WriteLine("Invalid Zip Code!");
+                        contact.Zip = UserInputDetails.ValidateZipCode();
                         break;
                     case "8":
                         Console.Write("Enter New Phone Number: ");
-                        if (long.TryParse(Console.ReadLine(), out long newPhone))
-                            contact.PhoneNumber = newPhone;
-                        else
-                            Console.WriteLine("Invalid Phone Number!");
+                        contact.PhoneNumber = UserInputDetails.ValidatePhoneNumber();
                         break;
                     case "9":
                         Console.WriteLine("\u2705 Contact Updated Successfully...");

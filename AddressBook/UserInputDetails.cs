@@ -27,7 +27,7 @@ namespace AddressBook
         }
 
         // Validation Methods
-        private static string ValidateEmail()
+        public static string ValidateEmail()
         {
             while (true)
             {
@@ -41,7 +41,7 @@ namespace AddressBook
             }
         }
 
-        private static long ValidatePhoneNumber()
+        public static long ValidatePhoneNumber()
         {
             while (true)
             {
@@ -55,7 +55,7 @@ namespace AddressBook
             }
         }
 
-        private static int ValidateZipCode()
+        public static int ValidateZipCode()
         {
             while (true)
             {
