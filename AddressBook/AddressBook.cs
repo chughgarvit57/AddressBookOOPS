@@ -38,51 +38,67 @@
                 Console.WriteLine("6. State");
                 Console.WriteLine("7. Zip Code");
                 Console.WriteLine("8. Phone Number");
-                Console.WriteLine("9. Done\n");
+                Console.WriteLine("9. Done (Exit Without Further Changes)\n");
 
                 Console.Write("Select an option to update: ");
                 string choice = Console.ReadLine();
 
-                switch (choice)
+                if(choice == "9")
                 {
-                    case "1":
-                        Console.Write("Enter New First Name: ");
-                        contact.FirstName = Console.ReadLine();
-                        break;
-                    case "2":
-                        Console.Write("Enter New Last Name: ");
-                        contact.LastName = Console.ReadLine();
-                        break;
-                    case "3":
-                        Console.Write("Enter New Email: ");
-                        contact.Email = UserInputDetails.ValidateEmail();
-                        break;
-                    case "4":
-                        Console.Write("Enter New Address: ");
-                        contact.Address = Console.ReadLine();
-                        break;
-                    case "5":
-                        Console.Write("Enter New City: ");
-                        contact.City = Console.ReadLine();
-                        break;
-                    case "6":
-                        Console.Write("Enter New State: ");
-                        contact.State = Console.ReadLine();
-                        break;
-                    case "7":
-                        Console.Write("Enter New Zip Code: ");
-                        contact.Zip = UserInputDetails.ValidateZipCode();
-                        break;
-                    case "8":
-                        Console.Write("Enter New Phone Number: ");
-                        contact.PhoneNumber = UserInputDetails.ValidatePhoneNumber();
-                        break;
-                    case "9":
-                        Console.WriteLine("\u2705 Contact Updated Successfully...");
-                        return;
-                    default:
-                        Console.WriteLine("\u274c Invalid Choice! Please try again...");
-                        break;
+                    Console.WriteLine("\u2705 Contact Update Completed.");
+                    return;
+                }
+
+                Console.Write("Enter New Value (Leave blank to keep current value): ");
+                string newValue = Console.ReadLine().Trim();
+
+                if (!string.IsNullOrWhiteSpace(newValue))
+                {
+                    switch (choice)
+                    {
+                        case "1":
+                            Console.Write("Enter New First Name: ");
+                            contact.FirstName = Console.ReadLine();
+                            break;
+                        case "2":
+                            Console.Write("Enter New Last Name: ");
+                            contact.LastName = Console.ReadLine();
+                            break;
+                        case "3":
+                            Console.Write("Enter New Email: ");
+                            contact.Email = UserInputDetails.ValidateEmail();
+                            break;
+                        case "4":
+                            Console.Write("Enter New Address: ");
+                            contact.Address = Console.ReadLine();
+                            break;
+                        case "5":
+                            Console.Write("Enter New City: ");
+                            contact.City = Console.ReadLine();
+                            break;
+                        case "6":
+                            Console.Write("Enter New State: ");
+                            contact.State = Console.ReadLine();
+                            break;
+                        case "7":
+                            Console.Write("Enter New Zip Code: ");
+                            contact.Zip = UserInputDetails.ValidateZipCode();
+                            break;
+                        case "8":
+                            Console.Write("Enter New Phone Number: ");
+                            contact.PhoneNumber = UserInputDetails.ValidatePhoneNumber();
+                            break;
+                        case "9":
+                            Console.WriteLine("\u2705 Contact Updated Successfully...");
+                            return;
+                        default:
+                            Console.WriteLine("\u274c Invalid Choice! Please try again...");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\u2139 Keeping current value...");
                 }
             }
         }
