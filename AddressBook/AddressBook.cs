@@ -14,7 +14,7 @@
         {
             if (contacts.Contains(person))
             {
-                Console.WriteLine("\u274c Duplicate Contact Found! Contact Not Added.");
+                Console.WriteLine("\u274c Contact {0} already exists! Contact Not Added." , person.FirstName);
                 return;
             }
             contacts.Add(person);
