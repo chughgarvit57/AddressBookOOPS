@@ -15,7 +15,8 @@ namespace AddressBook
                 Console.WriteLine("\n--------------- Address Book System Menu ---------------");
                 Console.WriteLine("1. Create new Address Book");
                 Console.WriteLine("2. Select Address Book");
-                Console.WriteLine("3. Exit.");
+                Console.WriteLine("3. Search by City/State");
+                Console.WriteLine("4. Exit.");
                 Console.Write("Enter your choice: ");
                 int mainChoice;
                 if (!int.TryParse(Console.ReadLine(), out mainChoice))
@@ -51,6 +52,11 @@ namespace AddressBook
                         }
                         break;
                     case 3:
+                        Console.Write("Enter City/State to search: ");
+                        string location = Console.ReadLine();
+                        SearchAcrossAddressBooks(addressBooks, location); 
+                        break;
+                    case 4:
                         Console.WriteLine("Exiting Address Book System... GoodBye!");
                         return;
                     default:
@@ -105,6 +111,27 @@ namespace AddressBook
                     default:
                         Console.WriteLine("Invalid Option! Please select a valid choice...");
                         break;
+                }
+            }
+        }
+
+        static void SearchAcrossAddressBooks(Dictionary<string, IAddressBook> addressBooks, string location)
+        {
+            List<ContactPerson> results = new List<ContactPerson>();
+            foreach(var addressBook in addressBooks.Values)
+            {
+                results.AddRange(addressBook.SearchByCityOrState(location));
+            }
+            if(results.Count == 0)
+            {
+                Console.WriteLine("\u274c No Contacts Found In '{0}'",location);
+            }
+            else
+            {
+                Console.WriteLine("\n\u2705 Search Results For '{0}':", location);
+                foreach(ContactPerson person in results)
+                {
+                    Console.WriteLine(person);
                 }
             }
         }

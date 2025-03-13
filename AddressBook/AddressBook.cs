@@ -14,11 +14,11 @@
         {
             if (contacts.Contains(person))
             {
-                Console.WriteLine("\u274c Contact {0} already exists! Contact Not Added." , person.FirstName);
+                Console.WriteLine("\u274c Contact {0} already exists! Contact Not Added.", person.FirstName);
                 return;
             }
             contacts.Add(person);
-            Console.WriteLine("\u2705 Contact Added Successfully...!"); 
+            Console.WriteLine("\u2705 Contact Added Successfully...!");
         }
 
         public void UpdateContact(string firstName)
@@ -95,7 +95,7 @@
         public void DeleteContact(string firstName)
         {
             ContactPerson contact = contacts.Find(p => p.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase));
-            if(contact == null)
+            if (contact == null)
             {
                 Console.WriteLine("\u274c Contact Not Found");
                 return;
@@ -103,7 +103,6 @@
             contacts.Remove(contact);
             Console.WriteLine("\u2705 Contact Deleted Successfully...!");
         }
-
 
         public void Display()
         {
@@ -116,6 +115,11 @@
             {
                 Console.WriteLine(person);
             }
+        }
+
+        public List<ContactPerson> SearchByCityOrState(string location)
+        {
+            return contacts.Where(c => c.City.Equals(location, StringComparison.OrdinalIgnoreCase) || c.State.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 }
