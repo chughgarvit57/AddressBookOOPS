@@ -52,9 +52,32 @@ namespace AddressBook
                         }
                         break;
                     case 3:
-                        Console.Write("Enter City/State to search: ");
+                        if (addressBooks.Count == 0)
+                        {
+                            Console.WriteLine("\u274c No Address Books Available! Create one first.");
+                            break;
+                        }
+                        Console.Write("Enter First Name: ");
+                        string firstName = Console.ReadLine();
+                        Console.Write("Enter Last Name: ");
+                        string lastName = Console.ReadLine();
+                        Console.Write("Enter City/State: ");
                         string location = Console.ReadLine();
-                        SearchAcrossAddressBooks(addressBooks, location); 
+
+                        bool personFound = false;
+
+                        foreach(var book in addressBooks.Values)
+                        {
+                            if (book.SearchPersonInCity(firstName, lastName, location))
+                            {
+                                personFound = true;
+                            }
+                        }
+
+                        if (!personFound)
+                        {
+                            Console.WriteLine($"\u274c {firstName} {lastName} not found in \"{location}\".");
+                        }
                         break;
                     case 4:
                         Console.WriteLine("Exiting Address Book System... GoodBye!");
@@ -111,27 +134,6 @@ namespace AddressBook
                     default:
                         Console.WriteLine("Invalid Option! Please select a valid choice...");
                         break;
-                }
-            }
-        }
-
-        static void SearchAcrossAddressBooks(Dictionary<string, IAddressBook> addressBooks, string location)
-        {
-            List<ContactPerson> results = new List<ContactPerson>();
-            foreach(var addressBook in addressBooks.Values)
-            {
-                results.AddRange(addressBook.SearchByCityOrState(location));
-            }
-            if(results.Count == 0)
-            {
-                Console.WriteLine("\u274c No Contacts Found In '{0}'",location);
-            }
-            else
-            {
-                Console.WriteLine("\n\u2705 Search Results For '{0}':", location);
-                foreach(ContactPerson person in results)
-                {
-                    Console.WriteLine(person);
                 }
             }
         }

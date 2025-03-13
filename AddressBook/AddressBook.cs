@@ -104,6 +104,24 @@
             Console.WriteLine("\u2705 Contact Deleted Successfully...!");
         }
 
+        public bool SearchPersonInCity(string firstName, string lastName, string location)
+        {
+            var foundContact = contacts.FirstOrDefault(c =>
+        c.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase) &&
+        c.LastName.Equals(lastName, StringComparison.OrdinalIgnoreCase) &&
+        (c.City.Equals(location, StringComparison.OrdinalIgnoreCase) ||
+         c.State.Equals(location, StringComparison.OrdinalIgnoreCase)));
+
+            if (foundContact == null)
+            {
+                return false; // Person not found
+            }
+
+            Console.WriteLine($"\n\u2705 {foundContact.FirstName} {foundContact.LastName} found in {location}:");
+            Console.WriteLine($"- Phone: {foundContact.PhoneNumber}, Email: {foundContact.Email}");
+            return true;
+        }
+
         public void Display()
         {
             if (contacts.Count == 0)
@@ -115,11 +133,6 @@
             {
                 Console.WriteLine(person);
             }
-        }
-
-        public List<ContactPerson> SearchByCityOrState(string location)
-        {
-            return contacts.Where(c => c.City.Equals(location, StringComparison.OrdinalIgnoreCase) || c.State.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 }
