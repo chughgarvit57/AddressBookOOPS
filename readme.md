@@ -2,7 +2,7 @@
 
 This repository implements an **Address Book System** in **C#** using **Object-Oriented Programming (OOP) principles**. Each feature (Use Case) is developed in a **separate branch** and later merged into `main`.
 
-Each **Use Case (UC1 - UC10)** is implemented in its respective branch. The `dev` branch contains the overall **project structure**, and new features are merged from use case branches after completion.
+Each **Use Case (UC1 - UC12)** is implemented in its respective branch. The `dev` branch contains the overall **project structure**, and new features are merged from use case branches after completion.
 
 ---
 
@@ -47,12 +47,18 @@ Each **Use Case (UC1 - UC10)** is implemented in its respective branch. The `dev
 ### 🔹 **UC10: Count Contacts by City or State** (`UC10` branch)
 - Display count of persons in a given City/State.
 
+### 🔹 **UC11: Sort the entries in address book** (`UC11` branch)
+- Display the entries alphabetically by person's name.
+
+### 🔹 **UC12: Sort the entries in address book** (`UC12` branch)
+- Display the entries alphabetically by city,state and zip.
+
 ---
 
 ## 🛠️ Development & Contribution Guidelines
 
 ### 1️⃣ **Branching Strategy:**
-- Work on **feature branches** (`UC1`, `UC2`, ... `UC10`).
+- Work on **feature branches** (`UC1`, `UC2`, ... `UC12`).
 - Merge changes into `dev` before integrating into `main`.
 
 ### 2️⃣ **Coding Standards:**
