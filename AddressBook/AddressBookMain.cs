@@ -15,7 +15,7 @@ namespace AddressBook
                 Console.WriteLine("\n--------------- Address Book System Menu ---------------");
                 Console.WriteLine("1. Create new Address Book");
                 Console.WriteLine("2. Select Address Book");
-                Console.WriteLine("3. Search by City/State");
+                Console.WriteLine("3. Search in a location");
                 Console.WriteLine("4. Exit.");
                 Console.Write("Enter your choice: ");
                 int mainChoice;
@@ -36,7 +36,7 @@ namespace AddressBook
                         else
                         {
                             addressBooks[bookName] = new AddressBook();
-                            Console.WriteLine("Address Book '{0}' created successfully..!", bookName);
+                            Console.WriteLine("\u2705 Address Book '{0}' created successfully..!", bookName);
                         }
                         break;
                     case 2:
