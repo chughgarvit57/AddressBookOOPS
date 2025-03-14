@@ -162,7 +162,7 @@
                 return;
             }
 
-            var sortedContacts = contacts.OrderBy(c => c.FirstName).ToList();
+            List<ContactPerson> sortedContacts = contacts.OrderBy(c => c.FirstName).ToList();
 
             foreach (ContactPerson person in sortedContacts)
             {
