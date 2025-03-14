@@ -169,5 +169,47 @@
                 Console.WriteLine(person);
             }
         }
+
+        public void SortByCity()
+        {
+            if (contacts.Count == 0)
+            {
+                Console.WriteLine("No Contacts In Address Book!");
+                return;
+            }
+            List<ContactPerson> sortedContacts = contacts.OrderBy(c => c.City).ToList();
+            foreach (ContactPerson person in sortedContacts)
+            {
+                Console.WriteLine(person);
+            }
+        }
+
+        public void SortByState()
+        {
+            if (contacts.Count == 0)
+            {
+                Console.WriteLine("No Contacts In Address Book!");
+                return;
+            }
+            List<ContactPerson> sortedContacts = contacts.OrderBy(c => c.State).ToList();
+            foreach (ContactPerson person in sortedContacts)
+            {
+                Console.WriteLine(person);
+            }
+        }
+
+        public void SortByZip()
+        {
+            if (contacts.Count == 0)
+            {
+                Console.WriteLine("No Contacts In Address Book!");
+                return;
+            }
+            List<ContactPerson> sortedContacts = contacts.OrderBy(c => c.Zip).ToList();
+            foreach (ContactPerson person in sortedContacts)
+            {
+                Console.WriteLine(person);
+            }
+        }
     }
 }

@@ -6,7 +6,6 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            // Enabled unicode characters in terminal
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Dictionary<string, IAddressBook> addressBooks = new Dictionary<string, IAddressBook>();
             Console.WriteLine("Hi! Welcome To Address Book System..!");
@@ -18,7 +17,8 @@ namespace AddressBook
                 Console.WriteLine("3. Search in a location");
                 Console.WriteLine("4. Search by location");
                 Console.WriteLine("5. Get count in a location");
-                Console.WriteLine("6. Exit.");
+                Console.WriteLine("6. Sort Contacts");
+                Console.WriteLine("7. Exit.");
                 Console.Write("Enter your choice: ");
                 int mainChoice;
                 if (!int.TryParse(Console.ReadLine(), out mainChoice))
@@ -29,7 +29,7 @@ namespace AddressBook
                 switch (mainChoice)
                 {
                     case 1:
-                        Console.WriteLine("Enter Address Book Name: ");
+                        Console.Write("Enter Address Book Name: ");
                         string bookName = Console.ReadLine();
                         if (addressBooks.ContainsKey(bookName))
                         {
@@ -68,7 +68,7 @@ namespace AddressBook
 
                         bool personFound = false;
 
-                        foreach(var book in addressBooks.Values)
+                        foreach (var book in addressBooks.Values)
                         {
                             if (book.SearchPersonInCity(firstName, lastName, location))
                             {
@@ -95,7 +95,7 @@ namespace AddressBook
                         Console.Write("Enter location: ");
                         string locationToGetCount = Console.ReadLine();
                         bool foundData = false;
-                        foreach(var book in addressBooks.Values)
+                        foreach (var book in addressBooks.Values)
                         {
                             book.GetCountInLocation(locationToGetCount);
                             foundData = true;
@@ -106,6 +106,33 @@ namespace AddressBook
                         }
                         break;
                     case 6:
+                        if (addressBooks.Count == 0)
+                        {
+                            Console.WriteLine("\u274c No Address Books Available! Create one first.");
+                            break;
+                        }
+                        Console.Write("Sort by (City/State/Zip): ");
+                        string sortBy = Console.ReadLine().ToLower();
+                        foreach (var book in addressBooks.Values)
+                        {
+                            switch (sortBy)
+                            {
+                                case "city":
+                                    book.SortByCity();
+                                    break;
+                                case "state":
+                                    book.SortByState();
+                                    break;
+                                case "zip":
+                                    book.SortByZip();
+                                    break;
+                                default:
+                                    Console.WriteLine("Invalid sort option!");
+                                    break;
+                            }
+                        }
+                        break;
+                    case 7:
                         Console.WriteLine("Exiting Address Book System... GoodBye!");
                         return;
                     default:
@@ -126,9 +153,9 @@ namespace AddressBook
                 Console.WriteLine("4. Delete Contact");
                 Console.WriteLine("5. Display Contacts");
                 Console.WriteLine("6. Back To Main Menu");
-                Console.Write("Enter you choice: ");
+                Console.Write("Enter your choice: ");
                 int choice;
-                if(!int.TryParse(Console.ReadLine(), out choice))
+                if (!int.TryParse(Console.ReadLine(), out choice))
                 {
                     Console.WriteLine("Invalid Input! Please enter a valid number.");
                     continue;
@@ -136,14 +163,14 @@ namespace AddressBook
                 switch (choice)
                 {
                     case 1:
-                        addressBook.CreateContact(); 
+                        addressBook.CreateContact();
                         break;
                     case 2:
                         ContactPerson person = UserInputDetails.TakeDetailsFromUserInput();
                         addressBook.AddContact(person);
                         break;
                     case 3:
-                        Console.WriteLine("Enter the first name of the contact to update: ");
+                        Console.Write("Enter the first name of the contact to update: ");
                         string newFirstName = Console.ReadLine();
                         addressBook.UpdateContact(newFirstName);
                         break;
@@ -164,21 +191,21 @@ namespace AddressBook
             }
         }
 
-        static void SearchAcrossAddressBooks(Dictionary<string,IAddressBook> addressBooks, string location)
+        static void SearchAcrossAddressBooks(Dictionary<string, IAddressBook> addressBooks, string location)
         {
             List<ContactPerson> results = new List<ContactPerson>();
-            foreach(dynamic addressBook in addressBooks.Values)
+            foreach (var addressBook in addressBooks.Values)
             {
                 results.AddRange(addressBook.SearchByLocation(location));
             }
-            if(results.Count == 0)
+            if (results.Count == 0)
             {
-                Console.WriteLine("\u274c No Contacts Found In '{0}'",location);
+                Console.WriteLine("\u274c No Contacts Found In '{0}'", location);
             }
             else
             {
-                Console.WriteLine("\n\u2705 Search Result For '{0}':",location);
-                foreach(ContactPerson person in results)
+                Console.WriteLine("\n\u2705 Search Result For '{0}':", location);
+                foreach (ContactPerson person in results)
                 {
                     Console.WriteLine(person);
                 }

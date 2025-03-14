@@ -9,6 +9,9 @@
         public bool SearchPersonInCity(string firstName, string lastName, string location);
         public List<ContactPerson> SearchByLocation(string location);
         public void GetCountInLocation(string location);
+        public void SortByCity();
+        public void SortByState();
+        public void SortByZip();
         public void Display();
     }
 }
