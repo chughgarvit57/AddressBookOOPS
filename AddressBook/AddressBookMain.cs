@@ -16,7 +16,8 @@ namespace AddressBook
                 Console.WriteLine("1. Create new Address Book");
                 Console.WriteLine("2. Select Address Book");
                 Console.WriteLine("3. Search in a location");
-                Console.WriteLine("4. Exit.");
+                Console.WriteLine("4. Search by location");
+                Console.WriteLine("5. Exit.");
                 Console.Write("Enter your choice: ");
                 int mainChoice;
                 if (!int.TryParse(Console.ReadLine(), out mainChoice))
@@ -80,6 +81,11 @@ namespace AddressBook
                         }
                         break;
                     case 4:
+                        Console.Write("Enter City/State to search: ");
+                        string locationCityState = Console.ReadLine();
+                        SearchAcrossAddressBooks(addressBooks, locationCityState);
+                        break;
+                    case 5:
                         Console.WriteLine("Exiting Address Book System... GoodBye!");
                         return;
                     default:
@@ -134,6 +140,27 @@ namespace AddressBook
                     default:
                         Console.WriteLine("Invalid Option! Please select a valid choice...");
                         break;
+                }
+            }
+        }
+
+        static void SearchAcrossAddressBooks(Dictionary<string,IAddressBook> addressBooks, string location)
+        {
+            List<ContactPerson> results = new List<ContactPerson>();
+            foreach(dynamic addressBook in addressBooks.Values)
+            {
+                results.AddRange(addressBook.SearchByLocation(location));
+            }
+            if(results.Count == 0)
+            {
+                Console.WriteLine("\u274c No Contacts Found In '{0}'",location);
+            }
+            else
+            {
+                Console.WriteLine("\n\u2705 Search Result For '{0}':",location);
+                foreach(ContactPerson person in results)
+                {
+                    Console.WriteLine(person);
                 }
             }
         }

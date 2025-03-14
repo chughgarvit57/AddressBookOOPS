@@ -122,6 +122,11 @@
             return true;
         }
 
+        public List<ContactPerson> SearchByLocation(string location)
+        {
+            return contacts.Where(c => c.City.Equals(location, StringComparison.OrdinalIgnoreCase) || c.State.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
         public void Display()
         {
             if (contacts.Count == 0)

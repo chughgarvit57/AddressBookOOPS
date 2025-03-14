@@ -7,6 +7,7 @@
         public void UpdateContact(string firstName);
         public void DeleteContact(string firstName);
         public bool SearchPersonInCity(string firstName, string lastName, string location);
+        public List<ContactPerson> SearchByLocation(string location);
         public void Display();
     }
 }
