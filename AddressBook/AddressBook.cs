@@ -161,7 +161,10 @@
                 Console.WriteLine("No Contacts In Address Book!");
                 return;
             }
-            foreach (ContactPerson person in contacts)
+
+            var sortedContacts = contacts.OrderBy(c => c.FirstName).ToList();
+
+            foreach (ContactPerson person in sortedContacts)
             {
                 Console.WriteLine(person);
             }
