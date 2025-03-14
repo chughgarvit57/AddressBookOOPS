@@ -127,6 +127,33 @@
             return contacts.Where(c => c.City.Equals(location, StringComparison.OrdinalIgnoreCase) || c.State.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
+        public void GetCountInLocation(string location)
+        {
+
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                Console.WriteLine("Please enter a valid location.");
+                return;
+            }
+
+            if (contacts.Count == 0)
+            {
+                Console.WriteLine("\u2139 Contacts are empty. Add Contacts First.");
+                return;
+            }
+
+            int locationCount = contacts.Count(c => c.City.Equals(location, StringComparison.OrdinalIgnoreCase) || c.State.Equals(location, StringComparison.OrdinalIgnoreCase));
+
+            if (locationCount > 0)
+            {
+                Console.WriteLine($"Count of persons in {location}: {locationCount}");
+            }
+            else
+            {
+                Console.WriteLine($"\u2139 No persons found in {location}");
+            }
+        }
+
         public void Display()
         {
             if (contacts.Count == 0)

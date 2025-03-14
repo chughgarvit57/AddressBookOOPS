@@ -17,7 +17,8 @@ namespace AddressBook
                 Console.WriteLine("2. Select Address Book");
                 Console.WriteLine("3. Search in a location");
                 Console.WriteLine("4. Search by location");
-                Console.WriteLine("5. Exit.");
+                Console.WriteLine("5. Get count in a location");
+                Console.WriteLine("6. Exit.");
                 Console.Write("Enter your choice: ");
                 int mainChoice;
                 if (!int.TryParse(Console.ReadLine(), out mainChoice))
@@ -86,6 +87,25 @@ namespace AddressBook
                         SearchAcrossAddressBooks(addressBooks, locationCityState);
                         break;
                     case 5:
+                        if (addressBooks.Count == 0)
+                        {
+                            Console.WriteLine("\u274c No Address Books Available! Create one first.");
+                            break;
+                        }
+                        Console.Write("Enter location: ");
+                        string locationToGetCount = Console.ReadLine();
+                        bool foundData = false;
+                        foreach(var book in addressBooks.Values)
+                        {
+                            book.GetCountInLocation(locationToGetCount);
+                            foundData = true;
+                        }
+                        if (!foundData)
+                        {
+                            Console.WriteLine($"\u274c No data found for \"{locationToGetCount}\"");
+                        }
+                        break;
+                    case 6:
                         Console.WriteLine("Exiting Address Book System... GoodBye!");
                         return;
                     default:

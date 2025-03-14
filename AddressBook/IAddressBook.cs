@@ -8,6 +8,7 @@
         public void DeleteContact(string firstName);
         public bool SearchPersonInCity(string firstName, string lastName, string location);
         public List<ContactPerson> SearchByLocation(string location);
+        public void GetCountInLocation(string location);
         public void Display();
     }
 }
